@@ -1,0 +1,26 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head><meta content="text/html; charset=UTF-8" http-equiv="content-type" /><title>Home</title></head>
+<body class="lift:content_id=main">
+<div id="main" class="lift:surround?with=default;at=content">
+    <h1>Tracks</h1>
+
+    <ol class="auctions" lift="listings.all">
+        <li class="top">
+            <div class="description">
+                <h3><span class="name">NAME</span>
+                <span> (</span><span class="user">UserName</span>)</h3>
+                <p><span class="desc">Description goes here</span>
+                    <a href="#">Details >></a></p>
+            </div>
+        </li>
+    </ol>
+
+    <div lift="listings.paginate">
+        <p><nav:records/></p>
+        <nav:first /> | <nav:prev/> | <nav:allpages> | </nav:allpages> | <nav:next/> | <nav:last />
+    </div>
+</div>
+</body>
+</html>
+

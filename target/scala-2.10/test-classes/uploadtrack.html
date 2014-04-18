@@ -1,0 +1,51 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head><meta content="text/html; charset=UTF-8" http-equiv="content-type" /><title>Home</title></head>
+<body class="lift:content_id=main">
+<div id="main" class="lift:surround?with=default;at=content">
+
+
+
+    <lift:test_cond.loggedin>
+
+
+        <form class="lift:CreateTrack?form=post;multipart=true">
+            <fieldset class="alt">
+                <legend><span>Images</span></legend>
+                <ol>
+                    <li><label for="name">Name</label>
+                        <input id="name" name="name" class="text" type="text" />
+                    </li>
+                    <li><label for="desc">Desc</label>
+                        <input id="desc" name="desc" class="text" type="text" />
+                    </li>
+                    <li><label for="track">Track</label>
+                        <input id="track" name="track" class="text" type="text" />
+                    </li>
+                </ol>
+            </fieldset>
+            <fieldset class="submit">
+                <input type="submit" value="Create" class="submit" />
+            </fieldset>
+        </form>
+
+        <!--<lift:CreateTrack.add form="POST" multipart="true">-->
+            <!--<span>Name: </span><entry:name/>-->
+            <!--<br />-->
+            <!--<span>Description: </span><entry:desc/>-->
+            <!--<br />-->
+            <!--<span>Track (GPX): </span><entry:receipt/>-->
+            <!--<br />-->
+            <!--<entry:submit/>-->
+        <!--</lift:CreateTrack.add >-->
+    </lift:test_cond.loggedin>
+
+    <lift:test_cond.loggedout>
+        <div class="half">Log in to upload a track</div>
+    </lift:test_cond.loggedout>
+
+
+</div>
+</body>
+</html>
+

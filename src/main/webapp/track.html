@@ -1,0 +1,112 @@
+<lift:surround with="default" at="content">
+
+<lift:DetailTrack.show>
+        <div class="description">
+            <h3><span class="name">NAME</span>
+                <span> (by </span><span class="user">UserName</span>)</h3>
+
+            <p><span class="desc">Description goes here</span>
+                <a href="#" style="visibility:hidden;">Details >></a></p>
+
+            <table>
+                <caption><h3>Metadaten</h3></caption>
+                <tr class="row">
+                    <td><span class="key">key</span></td>
+                    <td><span class="value">value</span></td>
+                </tr>
+            </table>
+
+        </div>
+
+    </lift:DetailTrack.show>
+    <script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=true"></script>
+
+
+    <script type="text/javascript">
+/* <![CDATA[ */
+
+
+      var bounds;
+
+      function generateLatLngsFromServerData(locations){
+        var latlngs = new Array();
+        for(i=0; i<locations.length; i++) {
+            var point = new google.maps.LatLng(locations[i].lat,locations[i].lng);
+            bounds.extend(point);
+            latlngs.push(point);
+        }
+        return latlngs;
+      }
+
+
+      function drawmap(locations) {
+         bounds = new google.maps.LatLngBounds();
+         var myOptions = {
+            zoom: 1,
+            mapTypeId: google.maps.MapTypeId.ROADMAP
+            };
+          var map = new google.maps.Map(document.getElementById("map_canvas"), myOptions);
+
+          initialLocation = new google.maps.LatLng(0, 0);
+          map.setCenter(initialLocation);
+
+         var data = locations.loc;
+
+         for(name in data){
+            var tData = data[name];
+            if(tData.wp != undefined && tData.wp != []){
+                console.log("draw wp");
+                drawWayPoints(map, tData.wp);
+            }else if(tData.trk != undefined && tData.trk != []){
+                console.log("draw trk");
+                drawTrack(map, tData.trk);
+            }else{
+                console.log("unkown");
+            }
+
+         }
+         map.fitBounds(bounds);
+
+      }
+
+
+      function drawWayPoints(map, locations){
+
+        var latlngs = generateLatLngsFromServerData(locations);
+
+        for(i=0; i<latlngs.length; i++) {
+            var marker = new google.maps.Marker({
+                position: latlngs[i],
+                title: locations[i].title });
+            marker.setMap(map);
+          }
+      }
+
+      function drawTrack(map, locations){
+        var latlngs = generateLatLngsFromServerData(locations);
+        console.log(latlngs)
+        var track = new google.maps.Polyline({
+            path: latlngs,
+            geodesic: true,
+            strokeColor: '#FF0000',
+            strokeOpacity: 1.0,
+            strokeWeight: 2
+        });
+        track.setMap(map);
+      }
+
+
+  /* ]]> */
+    </script>
+
+
+    <div id="map_canvas" style="width:600px; height:400px;"></div>
+    <br />
+    <div id="elevation" style="width:600px;height:400px;"></div>
+
+
+    <lift:DetailTrack.plotGraph></lift:DetailTrack.plotGraph>
+    <lift:DetailTrack.map></lift:DetailTrack.map>
+
+
+</lift:surround>

@@ -1,0 +1,21 @@
+<lift:surround with="default" at="content">
+
+<ul lift="listings.all">
+
+        <li class="top">
+            <div class="description">
+
+                <a href="#"><h3><span class="name">NAME</span><span> (by </span><span class="user">UserName</span>)</h3></a>
+                <p><span class="desc">Description goes here</span></p>
+
+            </div>
+        </li>
+
+    </ul>
+
+    <div lift="listings.paginate">
+        <p><nav:records/></p>
+        <nav:first /> | <nav:prev/> | <nav:allpages> | </nav:allpages> | <nav:next/> | <nav:last />
+    </div>
+
+</lift:surround>
